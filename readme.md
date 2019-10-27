@@ -1,3 +1,3 @@
-Inspired by [redux.NET](https://github.com/GuillaumeSalles/redux.NET)
+# dapper.fun is (quite) C# functional Dapper fun
 
-### Redux C# functional implementation
+Attempt to use Dapper.net in a bit more declarative and functional way
