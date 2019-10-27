@@ -1,3 +1,3 @@
-# dapper.fun is (quite) C# functional Dapper fun
+# dapper.fun is C# (quite) functional Dapper fun
 
 Attempt to use Dapper.net in a bit more declarative and functional way
