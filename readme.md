@@ -114,6 +114,22 @@ b.Should().BeEquivalentTo(new B { Value = 2 });
 c.Should().BeEquivalentTo(new C { StringValue = "x" });
 ```
 
+Selectors... Exec, Scalar, Query and derivatives  
+Take Tuples, string , todo: CommandDefinition
+as Parameter
+
+```csharp
+Query("select something from X")
+Query((text: "select something from X", token: CancellationToken))
+Query((text: "select something from X", commandTimeout: 90))
+Query((text: "select something from X", commandType: CommandType.StoredProcedure))
+Query((text: "select something from X", buffered: true))
+Query((text, commandTimeout, commandType, buffered, cancel));
+
+buffered
+
+```
+
 Notes:  
     - Async Only
-    - todo?: multi query mapping (use external mapper?)
+    - todo?: Dapper.MultiMap (use external mapper?)
