@@ -24,7 +24,7 @@ namespace dapper.fun
                     commandTimeout: query.CommandTimeout,
                     commandType: query.CommandType);
         }
-      
+
         static Func<Task<SqlMapper.GridReader>, Task<R>> WithReader<R>(Func<SqlMapper.GridReader, R> fun)
         {
             return async results => fun((await results));
@@ -35,6 +35,20 @@ namespace dapper.fun
         public static Select<object, (IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>)> SelectMany<T1, T2, T3>(QueryString query) =>
             ChangeResult(SelectMany(query, typeof(T1), typeof(T2), typeof(T3)),
                 WithReader(reader => (reader.Read<T1>(), reader.Read<T2>(), reader.Read<T3>())));
+        public static Select<object, (IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>)> SelectMany<T1, T2, T3, T4>(QueryString query) =>
+               ChangeResult(SelectMany(query, typeof(T1), typeof(T2), typeof(T3)),
+                   WithReader(reader => (reader.Read<T1>(), reader.Read<T2>(), reader.Read<T3>(), reader.Read<T4>())));
+        public static Select<object, (IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>)> SelectMany<T1, T2, T3, T4, T5>(QueryString query) =>
+               ChangeResult(SelectMany(query, typeof(T1), typeof(T2), typeof(T3)),
+                   WithReader(reader => (reader.Read<T1>(), reader.Read<T2>(), reader.Read<T3>(), reader.Read<T4>(), reader.Read<T5>())));
+
+        public static Select<object, (IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>)> SelectMany<T1, T2, T3, T4, T5, T6>(QueryString query) =>
+               ChangeResult(SelectMany(query, typeof(T1), typeof(T2), typeof(T3)),
+                   WithReader(reader => (reader.Read<T1>(), reader.Read<T2>(), reader.Read<T3>(), reader.Read<T4>(), reader.Read<T5>(), reader.Read<T6>())));
+
+        public static Select<object, (IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>)> SelectMany<T1, T2, T3, T4, T5, T6, T7>(QueryString query) =>
+                       ChangeResult(SelectMany(query, typeof(T1), typeof(T2), typeof(T3)),
+                           WithReader(reader => (reader.Read<T1>(), reader.Read<T2>(), reader.Read<T3>(), reader.Read<T4>(), reader.Read<T5>(), reader.Read<T6>(), reader.Read<T7>())));
 
     }
 }
