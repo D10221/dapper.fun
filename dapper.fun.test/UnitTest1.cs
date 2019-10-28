@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -7,7 +5,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace dapper.fun.test
 {
     using static dapper.fun.Selects;
-
     [TestClass]
     public class UnitTest1
     {
@@ -26,10 +23,10 @@ namespace dapper.fun.test
 
                 (await Scalar<int>("select count(*) from Empty")(con, null)()).Should().Be(3);
                 (await Scalar<int, int>("select @param")(con, null)(3)).Should().Be(3);
-                
+
                 // List Support
                 // Dapper allows you to pass in IEnumerable<int> and will automatically parameterize your query.
-                (await Query<object,int>(
+                (await Query<object, int>(
                     @"select * 
                         from (
                             select 1 as Id 
@@ -40,22 +37,22 @@ namespace dapper.fun.test
                             as X where Id in @Ids"
                     )(con, null)(
                         new { Ids = new int[] { 1, 2, 3 } }
-                    ))                    
+                    ))
                     .Should()
                     .BeEquivalentTo(new int[] { 1, 2, 3 });
-                
+
                 // Literal Support
                 (await Query<object, int>(@"
                     select 1 as ID 
                     where Id = {=ID}
                 ")
                 (con, null)
-                (new { ID =1 }))
+                (new { ID = 1 }))
                 .Should()
-                .BeEquivalentTo(new []{ 1 });
+                .BeEquivalentTo(new[] { 1 });
 
-             // TODO:
-             // Type Switching Per Row
+                // TODO:
+                // Type Switching Per Row
             }
         }
     }
