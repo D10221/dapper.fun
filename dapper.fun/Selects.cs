@@ -17,74 +17,45 @@ namespace dapper.fun
         {
             return (connection, transaction) => (param) => SqlMapper.ExecuteAsync(
                 connection,
-                query,
-                param: AutoName(param),
-                transaction: transaction,
-                commandTimeout: query.CommandTimeout,
-                commandType: query.CommandType
+                query.AsCommandDefinition(AutoName(param), transaction)
                 );
         }
         public static Select<P, R> Scalar<P, R>(QueryString query)
         {
             return (connection, transaction) => (param) => SqlMapper.ExecuteScalarAsync<R>(
                 connection,
-                query,
-                param: AutoName(param),
-                transaction: transaction,
-                commandTimeout: query.CommandTimeout,
-                commandType: query.CommandType
+                query.AsCommandDefinition(AutoName(param), transaction)
                 );
         }
         public static Select<P, IEnumerable<R>> Query<P, R>(QueryString query)
         {
             return (connection, transaction) => (param) => SqlMapper.QueryAsync<R>(
-                connection, query,
-                param: AutoName(param),
-                transaction: transaction,
-                commandTimeout: query.CommandTimeout,
-                commandType: query.CommandType
+                connection, query.AsCommandDefinition(AutoName(param), transaction)
                 );
         }
         public static Select<P, R> QueryFirst<P, R>(QueryString query)
         {
             return (connection, transaction) => (param) => SqlMapper.QueryFirstAsync<R>(
-                connection, query,
-                param: AutoName(param),
-                transaction: transaction,
-                commandTimeout: query.CommandTimeout,
-                commandType: query.CommandType
+                connection, query.AsCommandDefinition(AutoName(param), transaction)
                 );
         }
         public static Select<P, R> QueryFirstOrDefault<P, R>(QueryString query)
         {
             return (connection, transaction) => (param) => SqlMapper.QueryFirstOrDefaultAsync<R>(
-                connection, query,
-                param: AutoName(param),
-                transaction: transaction,
-                commandTimeout: query.CommandTimeout,
-                commandType: query.CommandType
+                connection, query.AsCommandDefinition(AutoName(param), transaction)
                 );
         }
         public static Select<P, R> QuerySingle<P, R>(QueryString query)
         {
             return (connection, transaction) => (param) => SqlMapper.QuerySingleAsync<R>(
-                connection, query,
-                param: AutoName(param),
-                transaction: transaction,
-                commandTimeout: query.CommandTimeout,
-                commandType: query.CommandType
-                );
+                connection, query.AsCommandDefinition(AutoName(param), transaction));
         }
         public static Select<P, R> QuerySingleOrDefault<P, R>(QueryString query)
         {
             return (connection, transaction) => (param) => SqlMapper.QuerySingleOrDefaultAsync<R>(
-                connection, query,
-                param: AutoName(param),
-                transaction: transaction,
-                commandTimeout: query.CommandTimeout,
-                commandType: query.CommandType
+                connection, query.AsCommandDefinition(AutoName(param), transaction)
                 );
-        }        
+        }
         public static object AutoName<P>(P param)
         {
             switch (typeof(P))
