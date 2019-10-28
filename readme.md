@@ -89,7 +89,7 @@ b.Should().BeEquivalentTo(new B { Value = 2 });
 c.Should().BeEquivalentTo(new C { StringValue = "x" });
 ```
 
-Select Many , Query multiple, without pramaters  
+Select Many , Query multiple, without parameters  
 Note: NoParams removes the need to to pass null as parameter
 
 ```csharp
@@ -111,3 +111,4 @@ Notes:
     - todo?: store procedures's options  
     - todo?: sql commad options
     - todo?: multi query mapping (use external mapper)
+    - todo: cancellation token
