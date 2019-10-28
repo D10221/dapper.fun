@@ -4,6 +4,15 @@ Attempt to use Dapper.net in a bit more declarative and functional way
 
 Usage:  
 
+Optimized for static imports
+
+```csharp
+using static dapper.fun.Selects;
+using static dapper.fun.Transforms;
+using static dapper.fun.Queries;
+using static dapper.fun.Connects;
+```
+
 Query -with parameters  
 
 ```csharp
@@ -106,9 +115,5 @@ c.Should().BeEquivalentTo(new C { StringValue = "x" });
 ```
 
 Notes:  
-    - Async Only  
-    - todo?: buffered option  (dapper sync method don't have it inthe signature?)  
-    - todo?: store procedures's options  
-    - todo?: sql commad options
-    - todo?: multi query mapping (use external mapper)
-    - todo: cancellation token
+    - Async Only
+    - todo?: multi query mapping (use external mapper?)
