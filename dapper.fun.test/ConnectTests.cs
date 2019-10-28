@@ -51,12 +51,12 @@ namespace dapper.fun.test
         {
             using (var connection = Database.Connect())
             {
-                var select1 = Connected(QuerySingle<int>("select 1"), connection);
+                var select1 = Connect(QuerySingle<int>("select 1"), connection);
 
                 var one = await select1();
                 one.Should().Be(1);
                 // Auto Named as @param
-                var select = Connected(QuerySingle<int, int>("select @param"), connection);
+                var select = Connect(QuerySingle<int, int>("select @param"), connection);
 
                 one = await select(1);
                 one.Should().Be(1);

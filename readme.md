@@ -4,7 +4,7 @@ Attempt to use Dapper.net in a bit more declarative and functional way
 
 Usage:  
 
-Optimized for static imports
+With static imports
 
 ```csharp
 using static dapper.fun.Selects;

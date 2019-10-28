@@ -20,7 +20,7 @@ namespace dapper.fun.test
                 using (var tokenSource = new CancellationTokenSource())
                 {
                     var cancel = tokenSource.Token;
-                    var wait = Connected(Exec((text: "sqlilte3_sleep(100); select 1;", cancel)), con);
+                    var wait = Connect(Exec((text: "sqlilte3_sleep(100); select 1;", cancel)), con);
                     tokenSource.Cancel();
 
                     Exception err = null;
@@ -47,7 +47,7 @@ namespace dapper.fun.test
                 using (var tokenSource = new CancellationTokenSource())
                 {
                     var cancel = tokenSource.Token;
-                    var wait = Connected(Scalar<int>((text: "sqlilte3_sleep(100); select 1;", cancel)), con);
+                    var wait = Connect(Scalar<int>((text: "sqlilte3_sleep(100); select 1;", cancel)), con);
                     tokenSource.Cancel();
 
                     Exception err = null;
@@ -74,7 +74,7 @@ namespace dapper.fun.test
                 using (var tokenSource = new CancellationTokenSource())
                 {
                     var cancel = tokenSource.Token;
-                    var wait = Connected(Query<int>((text: "sqlilte3_sleep(100); select 1;", cancel)), con);
+                    var wait = Connect(Query<int>((text: "sqlilte3_sleep(100); select 1;", cancel)), con);
                     tokenSource.Cancel();
 
                     Exception err = null;

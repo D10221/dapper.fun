@@ -22,14 +22,6 @@ namespace dapper.fun
         public static Selector<R> Connect<R>(Select<R> select, IDbConnection connection, IDbTransaction transaction = null)
         {
             return select(connection, transaction);
-        }
-        public static Func<Task<R>> Connected<R>(Select<R> select, IDbConnection connection, IDbTransaction transaction = null)
-        {
-            return () => select(connection, transaction)();
-        }
-        public static Func<P, Task<R>> Connected<P, R>(Select<P, R> select, IDbConnection connection, IDbTransaction transaction = null)
-        {
-            return (p) => select(connection, transaction)(p);
-        }
+        }        
     }
 }
