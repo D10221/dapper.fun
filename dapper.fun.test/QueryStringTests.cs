@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -9,7 +6,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace dapper.fun.test
 {
     using static dapper.fun.Selects;
-    using static dapper.fun.Queries;
     using static dapper.fun.Connects;
     [TestClass]
     public class QueryStringTests

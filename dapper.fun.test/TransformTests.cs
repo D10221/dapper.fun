@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -10,46 +6,10 @@ namespace dapper.fun.test
 {
     using static dapper.fun.Selects;
     using static dapper.fun.Transforms;
-    using static dapper.fun.Queries;
     using static dapper.fun.Connects;
     [TestClass]
     public class TransformTests
     {
-        [TestMethod]
-        public async Task TestWhereNoParams()
-        {
-            var where = ChangeQuery(Query<object>)(WithWhere)(
-                "WITH x AS (values(0,1,2,3,4)) select * from x"
-            );
-            Database.Drop();
-            IEnumerable<object> result;
-            using (var cnx = Database.Connect())
-            {
-                var withWhere = where(" column2 = 1 ");
-                var execWhere = withWhere(cnx, null);
-                result = await execWhere(); //no params
-            }
-                   ((int)(((dynamic)result.FirstOrDefault()).column2)).Should().Be(1);
-        }
-
-
-        [TestMethod]
-        public async Task TestWhereParams()
-        {
-            var where = ChangeQuery(Query<object, object>)(WithWhere)(
-                "WITH x AS (values(0,1,2,3,4)) select * from x"
-            );
-
-            IEnumerable<object> result;
-
-            Database.Drop();
-            using (var cnx = Database.Connect())
-            {
-                result = await where(" column2 = @value ")(cnx, null)(new { value = 1 });
-            }
-
-           ((int)(((dynamic)result.FirstOrDefault()).column2)).Should().Be(1);
-        }
         class User
         {
             public int ID { get; set; }
