@@ -1,9 +1,7 @@
-using Dapper;
-using System;
 using System.Collections.Generic;
 
 namespace dapper.fun
-{    
+{
     public partial class Selects
     {
         public static Select<R> QueryFirstOrDefault<R>(QueryString query) => NoParams(QueryFirstOrDefault<object, R>(query));

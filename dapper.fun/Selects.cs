@@ -6,10 +6,6 @@ namespace dapper.fun
 {
     ///<summary>
     /// They All select something 
-    /// - TODO: Dapper features:
-    /// - Buffered
-    /// - TFirst/ TSecond, etc (Multi Mapping)
-    /// - Store Procedures options
     ///</summary>
     public partial class Selects
     {
