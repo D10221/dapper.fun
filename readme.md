@@ -9,7 +9,6 @@ With static imports
 ```csharp
 using static dapper.fun.Selects;
 using static dapper.fun.Transforms;
-using static dapper.fun.Queries;
 using static dapper.fun.Connects;
 ```
 
@@ -24,7 +23,7 @@ result.FirstOrDefault().Value.Should().Be("hello");
 ```
 
 Query - automapped parameters '@param'  
-Note: only primitives / valuetypes & string or byte[] are mapped to { param = value }
+Note: only primitives | valuetypes & string | byte[] are mapped to { param = value }
 
 ```csharp
 var query = Connect(Query<string, Expected>(

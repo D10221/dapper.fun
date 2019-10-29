@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace dapper.fun.test
 {
     using static dapper.fun.Selects;
-
+    using static dapper.fun.Connects;
     [TestClass]
     public class SelectsTests
     {
@@ -22,7 +22,6 @@ namespace dapper.fun.test
             Select<int> create = Exec("create table if not exists User( id int primary key , name text not null )");
             Select<User, int> insert = Exec<User>("insert into user ( Name ) values ( @Name )");
             Select<IEnumerable<User>> all = Query<User>("select * from user");
-            // Wrong
             Select<int, IEnumerable<User>> find = Query<int, User>("select * from user where user id = @id");
             Select<int> drop = Exec("drop table user");
 
@@ -40,6 +39,18 @@ namespace dapper.fun.test
             var user = users.FirstOrDefault();
             user.Should().NotBeNull();
             user.Name.Should().Be("bob");
+        }
+        [TestMethod]
+        public async Task QueryDefualtReturnType()
+        {
+            using (var con = Database.Connect())
+            {
+                var get = Connect(Query("select 1 as x"), con);
+                var x = await get();
+                ((object)(x).FirstOrDefault().x)
+                             .Should()
+                             .BeEquivalentTo(1);
+            }
         }
     }
 }

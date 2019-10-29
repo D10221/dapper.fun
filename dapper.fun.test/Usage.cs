@@ -7,6 +7,7 @@ namespace dapper.fun.test
 {
     using static dapper.fun.Selects;
     using static dapper.fun.Connects;
+    using static dapper.fun.Transforms;
     [TestClass]
     public class Usage
     {
