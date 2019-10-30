@@ -108,7 +108,7 @@ select
                 ";
 
                 var types = new[] { typeof(Pocos2.User), typeof(Pocos2.Post) };
-                                               
+
 
                 var map = MakeMap(r => new { user = r[0], post = r[1] });
 
@@ -120,6 +120,13 @@ select
                 x.post.Should().BeEquivalentTo(new Pocos2.Post { PostID = 1, Text = "hello", UserID = 1 });
 
             }
+        }
+        [TestMethod]
+        public void MakeMapTest()
+        {
+            var map = MakeMap(objs => new { x = objs[0] }, x => x.x);
+            var r = map(new[] { "x" });
+            r.Should().Be("x");
         }
     }
 }

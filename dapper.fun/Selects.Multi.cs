@@ -47,5 +47,11 @@ namespace dapper.fun
         {
             return map;
         }        
+        public static Map<X, R2> MakeMap<X, R1, R2>(Map<X, R1> map1, Map<R1, R2> map2)
+        {
+            return x => map2(map1(x));
+        }
+        public static Map<object[], R2> MakeMap<R1, R2>(Map<object[], R1> map1, Map<R1, R2> map2)=>  MakeMap<object[], R1, R2>(map1, map2);
+
     }
 }
