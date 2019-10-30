@@ -130,5 +130,4 @@ buffered
 ```
 
 Notes:  
-    - Async Only
-    - todo?: Dapper.MultiMap (use external mapper?)
+    - Async Only  

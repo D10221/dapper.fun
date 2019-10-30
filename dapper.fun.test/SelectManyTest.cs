@@ -33,7 +33,7 @@ namespace dapper.fun.test
                     select 2 as Value
                 ")), con);
                 var (a, b) = await select();
-                
+
                 a.Should().BeEquivalentTo(new A { Value = 1 });
                 b.Should().BeEquivalentTo(new B { Value = 2 });
             }

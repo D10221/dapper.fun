@@ -63,17 +63,16 @@ namespace dapper.fun.test
                     select 1 as Value where @value = @value;
                     select 2 as Value where @value = @value;
                     select 'x' as StringValue where @value = @value;
-                    ", typeof(A), typeof(B), typeof(C)
-                    )), connection);
-                    
+                    ")), connection);
+
                     var reader = await select(new { value = "x" });
-                    
+
                     var a = reader.Read<A>();
                     a.Should().BeEquivalentTo(new A { Value = 1 });
 
                     var b = reader.Read<B>();
                     b.Should().BeEquivalentTo(new B { Value = 2 });
-                    
+
                     var c = reader.Read<C>();
                     c.Should().BeEquivalentTo(new C { StringValue = "x" });
                 }
