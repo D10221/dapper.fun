@@ -197,61 +197,62 @@ JOIN T7 on T7.id = T6.id
                     con
                 );
                 var result = await query();
-                result.Should().BeEquivalentTo(new Result{
-                    T1 = new T1 { ID = 1, Name = "t1"},
-                    T2 = new T2 { ID = 1, Name = "t2"},
-                    T3 = new T3 { ID = 1, Name = "t3"},
-                    T4 = new T4 { ID = 1, Name = "t4"},
-                    T5 = new T5 { ID = 1, Name = "t5"},
-                    T6 = new T6 { ID = 1, Name = "t6"},
-                    T7 = new T7 { ID = 1, Name = "t7"},
+                result.Should().BeEquivalentTo(new Result
+                {
+                    T1 = new T1 { ID = 1, Name = "t1" },
+                    T2 = new T2 { ID = 1, Name = "t2" },
+                    T3 = new T3 { ID = 1, Name = "t3" },
+                    T4 = new T4 { ID = 1, Name = "t4" },
+                    T5 = new T5 { ID = 1, Name = "t5" },
+                    T6 = new T6 { ID = 1, Name = "t6" },
+                    T7 = new T7 { ID = 1, Name = "t7" },
                 });
             }
         }
-    }
-    class T1
-    {
-        public int ID { get; set; }
-        public string Name { get; set; }
-    }
-    class T2
-    {
-        public int ID { get; set; }
-        public string Name { get; set; }
-    }
-    class T3
-    {
-        public int ID { get; set; }
-        public string Name { get; set; }
-    }
-    class T4
-    {
-        public int ID { get; set; }
-        public string Name { get; set; }
-    }
-    class T5
-    {
-        public int ID { get; set; }
-        public string Name { get; set; }
-    }
-    class T6
-    {
-        public int ID { get; set; }
-        public string Name { get; set; }
-    }
-    class T7
-    {
-        public int ID { get; set; }
-        public string Name { get; set; }
-    }
-    class Result
-    {
-        public T1 T1 { get; internal set; }
-        public T2 T2 { get; internal set; }
-        public T3 T3 { get; internal set; }
-        public T4 T4 { get; internal set; }
-        public T5 T5 { get; internal set; }
-        public T6 T6 { get; internal set; }
-        public T7 T7 { get; internal set; }
+        class T1
+        {
+            public int ID { get; set; }
+            public string Name { get; set; }
+        }
+        class T2
+        {
+            public int ID { get; set; }
+            public string Name { get; set; }
+        }
+        class T3
+        {
+            public int ID { get; set; }
+            public string Name { get; set; }
+        }
+        class T4
+        {
+            public int ID { get; set; }
+            public string Name { get; set; }
+        }
+        class T5
+        {
+            public int ID { get; set; }
+            public string Name { get; set; }
+        }
+        class T6
+        {
+            public int ID { get; set; }
+            public string Name { get; set; }
+        }
+        class T7
+        {
+            public int ID { get; set; }
+            public string Name { get; set; }
+        }
+        class Result
+        {
+            public T1 T1 { get; internal set; }
+            public T2 T2 { get; internal set; }
+            public T3 T3 { get; internal set; }
+            public T4 T4 { get; internal set; }
+            public T5 T5 { get; internal set; }
+            public T6 T6 { get; internal set; }
+            public T7 T7 { get; internal set; }
+        }
     }
 }
