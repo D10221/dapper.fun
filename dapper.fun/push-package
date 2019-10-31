@@ -1,0 +1,1 @@
+nuget push bin/Debug/dapper.fun.1.0.0-beta.nupkg -Source GitHub
