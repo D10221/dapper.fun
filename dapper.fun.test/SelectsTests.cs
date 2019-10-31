@@ -23,7 +23,7 @@ namespace dapper.fun.test
             {
                 return (
                     all: Query<User>("select * from user"),
-                    create: Exec("create table if not exists User( id int primary key , name text not null )"),
+                    create: Exec("create table if not exists User( id integer primary key autoincrement , name text not null )"),
                     drop: Exec("drop table if exists user"),
                     find: QuerySingle<int, User>("select * from user where id = @param"),
                     insert: Exec<User>("insert into user ( Name ) values ( @Name )"),
@@ -51,7 +51,7 @@ namespace dapper.fun.test
             using (var connection = Database.Connect())
             {
                 var dac = Users.Dac();
-                
+
                 var connected = new
                 {
                     create = Connect(dac.create, connection),
@@ -67,8 +67,8 @@ namespace dapper.fun.test
                 users = await all();
                 users.FirstOrDefault().Name.Should().Be("bob");
 
-                await update(new User { Name = "Tom", ID = users.FirstOrDefault().ID });                                
-                
+                await update(new User { Name = "Tom", ID = users.FirstOrDefault().ID });
+
                 (await find((await all()).FirstOrDefault().ID)).Name.Should().Be("Tom");
             }
 
