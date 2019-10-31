@@ -74,7 +74,7 @@ namespace dapper.fun.test
 
         }
         [TestMethod]
-        public async Task QueryDefualtReturnType()
+        public async Task QueryDefaultReturnType()
         {
             using (var con = Database.Connect())
             {
