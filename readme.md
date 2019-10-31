@@ -129,5 +129,102 @@ buffered
 
 ```
 
+QueryMap: "functors" Dapper's Query(...types[], map)  amd Query<...T7>
+
+```csharp
+var sql = @"
+        With user as (
+            select  
+                1 as userID,
+                'bob' as name
+        ),
+        post as (
+            select 
+                1 as postID,
+                'hello' as text,
+                1 as userid
+        )
+        select 
+            u.*, 
+            '____' as id,
+            p.* 
+            from user u 
+            join post p 
+                on p.userid = u.userid
+    ";
+
+var types = new[] { typeof(Pocos2.User), typeof(Pocos2.Post) };
+
+var map = MakeMap(r => new { user = r[0], post = r[1] });
+
+var get = Connect(QueryMap(sql, types, map), connection);
+
+var results = await get();
+var x = results.FirstOrDefault();
+x.user.Should().BeEquivalentTo(new { UserID = 1, Name = "bob" });
+x.post.Should().BeEquivalentTo(new Pocos2.Post { PostID = 1, Text = "hello", UserID = 1 });
+```
+
+Typed:
+
+```csharp
+var sql = @"
+        with T1 as (
+            select 1 as id, 't1' as name
+        ),
+        T2 as (
+            select 1 as id, 't2' as name
+        ),
+        T3 as (
+            select 1 as id, 't3' as name
+        ),
+        T4 as (
+            select 1 as id, 't4' as name
+        ),
+        T5 as (
+            select 1 as id, 't5' as name
+        ),
+        T6 as (
+            select 1 as id, 't6' as name
+        ),
+        T7 as (
+            select 1 as id, 't7' as name
+        )
+        SELECT * from  T1
+        JOIN T2 on T2.id = T1.id
+        JOIN T3 on T3.id = T2.id
+        JOIN T4 on T4.id = T3.id
+        JOIN T5 on T5.id = T4.id
+        JOIN T6 on T6.id = T5.id
+        JOIN T7 on T7.id = T6.id
+";
+var query = Connect(NoParams(QueryMap<object, T1, T2, T3, T4, T5, T6, T7, Result>(
+        sql,
+        (t1, t2, t3, t4, t5, t6, t7) => new Result
+        {
+            T1 = t1,
+            T2 = t2,
+            T3 = t3,
+            T4 = t4,
+            T5 = t5,
+            T6 = t6,
+            T7 = t7,
+        }
+    )),
+    connection
+);
+var result = await query();
+result.Should().BeEquivalentTo(new Result
+{
+    T1 = new T1 { ID = 1, Name = "t1" },
+    T2 = new T2 { ID = 1, Name = "t2" },
+    T3 = new T3 { ID = 1, Name = "t3" },
+    T4 = new T4 { ID = 1, Name = "t4" },
+    T5 = new T5 { ID = 1, Name = "t5" },
+    T6 = new T6 { ID = 1, Name = "t6" },
+    T7 = new T7 { ID = 1, Name = "t7" },
+});
+```
+
 Notes:  
     - Async Only  
