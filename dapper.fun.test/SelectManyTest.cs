@@ -41,18 +41,30 @@ namespace dapper.fun.test
         [TestMethod]
         public async Task Selects3()
         {
-            using (var con = Database.Connect())
+            using (var connection = Database.Connect())
             {
-                var select = Connect(NoParams(SelectMany<A, B, C>(@"
+                {
+                    var select = Connect(NoParams(SelectMany<A, B, C>(@"
                     select 1 as Value;
                     select 2 as Value;
                     select 'x' as StringValue
-                ")), con);
-                var (a, b, c) = await select();
+                ")), connection);
+                    var (a, b, c) = await select();
 
-                a.Should().BeEquivalentTo(new A { Value = 1 });
-                b.Should().BeEquivalentTo(new B { Value = 2 });
-                c.Should().BeEquivalentTo(new C { StringValue = "x" });
+                    a.Should().BeEquivalentTo(new A { Value = 1 });
+                    b.Should().BeEquivalentTo(new B { Value = 2 });
+                    c.Should().BeEquivalentTo(new C { StringValue = "x" });
+                }
+
+                {
+                    var selectByid = Connect(SelectMany<A, B, C>(@"
+                    select 1 as Value 1 as ID where id = @id;
+                    select 1 as Value 1 as ID where id = @id;
+                    select 1 as Value 1 as ID where id = @id;
+                "), connection);
+                    var (a, b, c) = await selectByid(new { id = 1 });
+                }
+
             }
         }
     }
