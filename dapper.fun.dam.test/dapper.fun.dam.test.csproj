@@ -12,11 +12,13 @@
     <PackageReference Include="coverlet.collector" Version="1.0.1" />
     <PackageReference Include="FluentAssertions" Version="5.9.0" />
     <PackageReference Include="System.Data.SQLite" Version="1.0.111.0" />
+    <PackageReference Include="ValueOf" Version="1.0.14" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\dapper.fun.dam\dapper.fun.dam.csproj" />
     <ProjectReference Include="..\dapper.fun\dapper.fun.csproj" />
+    <ProjectReference Include="..\valueof\valueof.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,3 +1,5 @@
+using valueof;
+
 namespace dapper.fun.dam.test
 {
     public class User: IUser 
@@ -5,6 +7,8 @@ namespace dapper.fun.dam.test
         public int ID { get; set; }
         public string Name { get; set; }
 
-        public Strings Roles {get; set; }
+        [Delimiter( Value = ",")]
+        public ValueOf<string[]> Roles {get; set; }
     }
+    
 }
