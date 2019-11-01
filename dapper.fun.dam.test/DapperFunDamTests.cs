@@ -5,13 +5,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace dapper.fun.dam.test
 {
-    using System;
-    using System.Data;
     using Dapper;
     using static dapper.fun.Connects;
 
     [TestClass]
-    public class DapperFunDamTests
+    public partial class DapperFunDamTests
     {
         [TestMethod]
         public async Task TestDamTyped()
@@ -42,11 +40,11 @@ namespace dapper.fun.dam.test
                 (await find((await all()).FirstOrDefault().ID)).Name.Should().Be("Tom");
             }
 
-        }       
+        }        
         [TestMethod]
-        public async Task TestDamBuilt()
-        {           
-            var Users = Dam.Create<IUser>((  // :) deserialize that ! ... TODO runtime/ auto implemented interfaces ... maybe
+        public async Task TestDamBuilt2()
+        {
+            var GetUsers = Dam.Create<User>((
                 all: "select * from user",
                 create: "create table if not exists User( id integer primary key autoincrement , name text not null )",
                 drop: "drop table if exists user",
@@ -54,34 +52,13 @@ namespace dapper.fun.dam.test
                 insert: "insert into user ( Name ) values ( @Name )",
                 update: "update User set Name = @Name where id = @ID")
             );
-        var users = Users();
 
             using (var connection = Database.Connect())
             {
-                var allUsers = Connect(users.all, connection);
-    var data = await allUsers();
-    data.Should().BeEquivalentTo(new IUser[0]);
+                var users = Dam.Connect(GetUsers, connection).Invoke();
+                await users.all();
             }
 
         }
-        [TestMethod]
-public async Task TestDamBuilt2()
-{
-    var GetUsers = Dam.Create<User>((
-        all: "select * from user",
-        create: "create table if not exists User( id integer primary key autoincrement , name text not null )",
-        drop: "drop table if exists user",
-        find: "select * from user where id = @param",
-        insert: "insert into user ( Name ) values ( @Name )",
-        update: "update User set Name = @Name where id = @ID")
-    );
-
-    using (var connection = Database.Connect())
-    {
-        var users = Dam.Connect(GetUsers, connection).Invoke();
-        await users.all();
-    }
-
-}
     }
 }
