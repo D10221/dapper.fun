@@ -35,14 +35,6 @@ namespace valueof
         {
             return Value?.ToString();
         }
-        public static implicit operator ValueOf<TValue>(TValue value)
-        {
-            return ValueOf.From(value);
-        }
-        public static implicit operator TValue(ValueOf<TValue> valueOf)
-        {
-            return valueOf.Value;
-        }
         public bool Equals(ValueOf<TValue> other)
         {
             return EqualityComparer<TValue>.Default.Equals(Value, other.Value) ||
@@ -76,6 +68,14 @@ namespace valueof
         public static bool operator !=(ValueOf<TValue> a, ValueOf<TValue> b)
         {
             return !(a == b);
+        }
+        public static implicit operator ValueOf<TValue>(TValue value)
+        {
+            return ValueOf.From(value);
+        }
+        public static implicit operator TValue(ValueOf<TValue> valueOf)
+        {
+            return valueOf.Value;
         }
     }
 
