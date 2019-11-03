@@ -16,8 +16,6 @@ namespace dapper.fun.dam.test
         private Func<object, T> _get;
         private Func<IDbDataParameter, Func<T, object>> _set;
 
-        DefaultTypeMap _defaultTypeMap;
-
         public PropertyTypeHandler(
             Func<object, T> get,
             Func<IDbDataParameter, Func<T, object>> set
@@ -27,11 +25,7 @@ namespace dapper.fun.dam.test
             _set = set;
         }
         public override void SetValue(IDbDataParameter parameter, T value)
-        {
-            if (_defaultTypeMap != null)
-            {
-                return;
-            }
+        {            
             parameter.Value = _set(parameter)(value);
         }
 
