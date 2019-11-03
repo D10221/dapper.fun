@@ -1,10 +1,13 @@
-﻿namespace dapper.fun.dam.test
+﻿using System;
+using System.Data;
+using Dapper;
+
+namespace dapper.fun.dam.test
 {
-    using System;
-    using System.Data;
-    using Dapper;
-    public static class PropertyTypeHandler {
-        public static PropertyTypeHandler<T> From<T>( Func<object, T> get,Func<IDbDataParameter, Func<T, object>> set){
+    public static class PropertyTypeHandler
+    {
+        public static PropertyTypeHandler<T> From<T>(Func<object, T> get, Func<IDbDataParameter, Func<T, object>> set)
+        {
             return new PropertyTypeHandler<T>(get, set);
         }
     }
@@ -21,7 +24,7 @@
             )
         {
             _get = get;
-            _set = set;           
+            _set = set;
         }
         public override void SetValue(IDbDataParameter parameter, T value)
         {
@@ -36,6 +39,7 @@
         {
             return _get(value);
         }
-    }
+    }    
 }
+
 
