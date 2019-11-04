@@ -4,17 +4,17 @@ namespace dapper.fun.dam.test.users
 {
     public class Queries
         {
-            public Select<object, IEnumerable<User>> Get { get; private set; }
-            public Select<int, User> Find { get; private set; }
-            public Select<User, int> Insert { get; private set; }
-            public Select<User, int> Update { get; private set; }
-            public Select<int, int> Delete { get; private set; }
+            public DbCommand<object, IEnumerable<User>> Get { get; private set; }
+            public DbCommand<int, User> Find { get; private set; }
+            public DbCommand<User, int> Insert { get; private set; }
+            public DbCommand<User, int> Update { get; private set; }
+            public DbCommand<int, int> Delete { get; private set; }
             public void Deconstruct(
-                out Select<object, IEnumerable<User>> get,
-                out Select<int, User> find,
-                out Select<User, int> insert,
-                out Select<User, int> update,
-                out Select<int, int> delete)
+                out DbCommand<object, IEnumerable<User>> get,
+                out DbCommand<int, User> find,
+                out DbCommand<User, int> insert,
+                out DbCommand<User, int> update,
+                out DbCommand<int, int> delete)
             {
                 get = Get;
                 find = Find;
@@ -23,11 +23,11 @@ namespace dapper.fun.dam.test.users
                 delete = Delete;
             }
             public static implicit operator Queries((
-                Select<object, IEnumerable<User>> get,
-                Select<int, User> find,
-                Select<User, int> insert,
-                Select<User, int> update,
-                Select<int, int> delete
+                DbCommand<object, IEnumerable<User>> get,
+                DbCommand<int, User> find,
+                DbCommand<User, int> insert,
+                DbCommand<User, int> update,
+                DbCommand<int, int> delete
                 ) x)
             {
                 var (get, find, insert, update, delete) = x;

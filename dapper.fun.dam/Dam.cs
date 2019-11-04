@@ -6,21 +6,21 @@ namespace dapper.fun.dam
     using static dapper.fun.Selects;
 
     public delegate (
-            Select<IEnumerable<T>> all,
-            Select<int> create,
-            Select<int> drop,
-            Select<int, T> find,
-            Select<T, int> insert,
-            Select<T, int> update) GetDam<T>();
+            DBCommand<IEnumerable<T>> all,
+            DBCommand<int> create,
+            DBCommand<int> drop,
+            DbCommand<int, T> find,
+            DbCommand<T, int> insert,
+            DbCommand<T, int> update) GetDam<T>();
 
 
     public delegate (
-                Selector<IEnumerable<T>> all,
-                Selector<int> create,
-                Selector<int> drop,
-                Selector<int, T> find,
-                Selector<T, int> insert,
-                Selector<T, int> update)
+                Command<IEnumerable<T>> all,
+                Command<int> create,
+                Command<int> drop,
+                Command<int, T> find,
+                Command<T, int> insert,
+                Command<T, int> update)
                 GetConnected<T>();
     public class Dam
     {

@@ -2,7 +2,7 @@ namespace dapper.fun.dam
 {
     public struct Queries
     {
-        public Queries(QueryString all, QueryString create, QueryString drop, QueryString find, QueryString insert, QueryString update){
+        public Queries(CommandSource all, CommandSource create, CommandSource drop, CommandSource find, CommandSource insert, CommandSource update){
             All = all;
             Create = create;
             Drop = drop;
@@ -10,13 +10,13 @@ namespace dapper.fun.dam
             Insert = insert;
             Update = update;
         }
-        QueryString All;
-        QueryString Create;
-        QueryString Drop; 
-        QueryString Find; 
-        QueryString Insert; 
-        QueryString Update;
-        public void Deconstruct(out QueryString all, out QueryString create, out QueryString drop, out QueryString find, out QueryString insert, out QueryString update)
+        CommandSource All;
+        CommandSource Create;
+        CommandSource Drop; 
+        CommandSource Find; 
+        CommandSource Insert; 
+        CommandSource Update;
+        public void Deconstruct(out CommandSource all, out CommandSource create, out CommandSource drop, out CommandSource find, out CommandSource insert, out CommandSource update)
         {
             all = All;
             create= Create;
@@ -25,7 +25,7 @@ namespace dapper.fun.dam
             insert = Insert;
             update =Update;
         }
-        public static implicit operator Queries ((QueryString all, QueryString create, QueryString drop, QueryString find, QueryString insert, QueryString update) queries) {
+        public static implicit operator Queries ((CommandSource all, CommandSource create, CommandSource drop, CommandSource find, CommandSource insert, CommandSource update) queries) {
             var (all, create, drop, find, insert, update) = queries;
             return new Queries(all, create, drop, find, insert, update);
         }

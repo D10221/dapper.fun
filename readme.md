@@ -113,9 +113,7 @@ b.Should().BeEquivalentTo(new B { Value = 2 });
 c.Should().BeEquivalentTo(new C { StringValue = "x" });
 ```
 
-Selectors... Exec, Scalar, Query and derivatives  
-Take Tuples, string , todo: CommandDefinition
-as Parameter
+Selectors... Exec, Scalar, Query and derivatives  Take Tuples, string
 
 ```csharp
 Query("select something from X")

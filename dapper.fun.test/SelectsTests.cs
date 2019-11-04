@@ -19,7 +19,7 @@ namespace dapper.fun.test
         }
         class Users
         {
-            public static (Select<IEnumerable<User>> all, Select<int> create, Select<int> drop, Select<int, User> find, Select<User, int> insert, Select<User, int> update) Dac()
+            public static (DBCommand<IEnumerable<User>> all, DBCommand<int> create, DBCommand<int> drop, DbCommand<int, User> find, DbCommand<User, int> insert, DbCommand<User, int> update) Dac()
             {
                 return (
                     all: Query<User>("select * from user"),
@@ -30,7 +30,7 @@ namespace dapper.fun.test
                     update: Exec<User>("update User set Name = @Name where id = @ID")
                 );
             }
-            public static (Selector<IEnumerable<User>> all, Selector<int> create, Selector<int> drop, Selector<int, User> find, Selector<User, int> insert, Selector<User, int> update) Connected(IDbConnection connection, IDbTransaction transaction = null)
+            public static (Command<IEnumerable<User>> all, Command<int> create, Command<int> drop, Command<int, User> find, Command<User, int> insert, Command<User, int> update) Connected(IDbConnection connection, IDbTransaction transaction = null)
             {
                 var (all, create, drop, find, insert, update) = Dac();
                 return (

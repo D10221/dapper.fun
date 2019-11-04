@@ -58,9 +58,9 @@ namespace dapper.fun.test
 
                 {
                     var selectByid = Connect(SelectMany<A, B, C>(@"
-                    select 1 as Value 1 as ID where id = @id;
-                    select 1 as Value 1 as ID where id = @id;
-                    select 1 as Value 1 as ID where id = @id;
+                    select 1 as Value, 1 as ID where id = @id;
+                    select 1 as Value, 1 as ID where id = @id;
+                    select 1 as Value, 1 as ID where id = @id;
                 "), connection);
                     var (a, b, c) = await selectByid(new { id = 1 });
                 }

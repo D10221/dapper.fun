@@ -11,7 +11,7 @@ namespace dapper.fun.dam.test.users
         {
             return (create: Exec(Scripts.Sqlite.Create), drop: Exec(Scripts.Sqlite.Drop));
         }
-        public static (Selector<int> create, Selector<int> drop) Connected(Setup s, IDbConnection connection, IDbTransaction transaction = null)
+        public static (Command<int> create, Command<int> drop) Connected(Setup s, IDbConnection connection, IDbTransaction transaction = null)
         {
             var (create, drop) = s;
             return (
@@ -30,7 +30,7 @@ namespace dapper.fun.dam.test.users
                 delete: Exec<int>(Scripts.Sqlite.Delete)
             );
         }
-        public static (Selector<object, IEnumerable<User>> get, Selector<int, User> find, Selector<User, int> insert, Selector<User, int> update, Selector<int, int> delete) Connected(
+        public static (Command<object, IEnumerable<User>> get, Command<int, User> find, Command<User, int> insert, Command<User, int> update, Command<int, int> delete) Connected(
             Queries q, 
             IDbConnection connection, IDbTransaction transaction = null)
         {

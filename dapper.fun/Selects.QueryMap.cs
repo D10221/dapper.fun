@@ -9,8 +9,8 @@ namespace dapper.fun
     public partial class Selects
     {
         //TODO:
-        public static Select<P, IEnumerable<R>> QueryMap<P, R>(
-            QueryString query,
+        public static DbCommand<P, IEnumerable<R>> QueryMap<P, R>(
+            CommandSource query,
             Type[] types,
             Map<object[], R> map,
             string splitOn = "id") =>
@@ -23,14 +23,14 @@ namespace dapper.fun
                 buffered: query.Buffered,
                 splitOn: splitOn
                 );
-        public static Select<IEnumerable<R>> QueryMap<R>(QueryString query,
+        public static DBCommand<IEnumerable<R>> QueryMap<R>(CommandSource query,
             Type[] types,
             Map<object[], R> map,
             string splitOn = "id")
         {
             return NoParams(QueryMap<object, R>(query, types, map, splitOn));
         }
-        public static Select<IEnumerable<object>> QueryMap(QueryString query,
+        public static DBCommand<IEnumerable<object>> QueryMap(CommandSource query,
             Type[] types,
             Map<object[], object> map,
             string splitOn = "id")
@@ -41,8 +41,8 @@ namespace dapper.fun
         ///<summar>
         ///
         ///</summar>
-        public static Select<P, IEnumerable<R>> QueryMap<P, T1, T2, R>(
-            QueryString query,
+        public static DbCommand<P, IEnumerable<R>> QueryMap<P, T1, T2, R>(
+            CommandSource query,
             Func<T1, T2, R> map,
             string splitOn = "id") =>
             (con, transaction) => (param) => SqlMapper.QueryAsync<T1, T2, R>(
@@ -56,8 +56,8 @@ namespace dapper.fun
         ///<summar>
         ///
         ///</summar>
-        public static Select<P, IEnumerable<R>> QueryMap<P, T1, T2, T3, R>(
-            QueryString query,
+        public static DbCommand<P, IEnumerable<R>> QueryMap<P, T1, T2, T3, R>(
+            CommandSource query,
             Func<T1, T2, T3, R> map,
             string splitOn = "id") =>
             (con, transaction) => (param) => SqlMapper.QueryAsync<T1, T2, T3, R>(
@@ -71,8 +71,8 @@ namespace dapper.fun
         ///<summar>
         ///
         ///</summar>
-        public static Select<P, IEnumerable<R>> QueryMap<P, T1, T2, T3, T4, R>(
-           QueryString query,
+        public static DbCommand<P, IEnumerable<R>> QueryMap<P, T1, T2, T3, T4, R>(
+           CommandSource query,
            Func<T1, T2, T3, T4, R> map,
            string splitOn = "id") =>
            (con, transaction) => (param) => SqlMapper.QueryAsync<T1, T2, T3, T4, R>(
@@ -86,8 +86,8 @@ namespace dapper.fun
         ///<summar>
         ///
         ///</summar>
-        public static Select<P, IEnumerable<R>> QueryMap<P, T1, T2, T3, T4, T5, R>(
-            QueryString query,
+        public static DbCommand<P, IEnumerable<R>> QueryMap<P, T1, T2, T3, T4, T5, R>(
+            CommandSource query,
             Func<T1, T2, T3, T4, T5, R> map,
             string splitOn = "id") =>
             (con, transaction) => (param) => SqlMapper.QueryAsync<T1, T2, T3, T4, T5, R>(
@@ -101,8 +101,8 @@ namespace dapper.fun
         ///<summar>
         ///
         ///</summar>
-        public static Select<P, IEnumerable<R>> QueryMap<P, T1, T2, T3, T4, T5, T6, R>(
-            QueryString query,
+        public static DbCommand<P, IEnumerable<R>> QueryMap<P, T1, T2, T3, T4, T5, T6, R>(
+            CommandSource query,
             Func<T1, T2, T3, T4, T5, T6, R> map,
             string splitOn = "id") =>
             (con, transaction) => (param) => SqlMapper.QueryAsync<T1, T2, T3, T4, T5, T6, R>(
@@ -116,8 +116,8 @@ namespace dapper.fun
         ///<summar>
         ///
         ///</summar>
-        public static Select<P, IEnumerable<R>> QueryMap<P, T1, T2, T3, T4, T5, T6, T7, R>(
-            QueryString query,
+        public static DbCommand<P, IEnumerable<R>> QueryMap<P, T1, T2, T3, T4, T5, T6, T7, R>(
+            CommandSource query,
             Func<T1, T2, T3, T4, T5, T6, T7, R> map,
             string splitOn = "id") =>
             (con, transaction) => (param) => SqlMapper.QueryAsync<T1, T2, T3, T4, T5, T6, T7, R>(

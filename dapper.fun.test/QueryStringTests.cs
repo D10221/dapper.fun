@@ -28,9 +28,9 @@ namespace dapper.fun.test
                 x.Should().Be(1);
                 x = await Connect(QuerySingle<int>((text, CommandType.Text)))(connection)();
                 x.Should().Be(1);
-                x = await Connect(QuerySingle<int>(new QueryString(text: text, commandTimeout: 30, commandType: CommandType.Text)))(connection)();
+                x = await Connect(QuerySingle<int>(new CommandSource(text: text, commandTimeout: 30, commandType: CommandType.Text)))(connection)();
                 x.Should().Be(1);
-                x = await Connect(QuerySingle<int>(new QueryString(text: text)))(connection)();
+                x = await Connect(QuerySingle<int>(new CommandSource(text: text)))(connection)();
                 x.Should().Be(1);
                 x = await Connect(QuerySingle<int>(text))(connection)();
                 x.Should().Be(1);
